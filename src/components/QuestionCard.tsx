@@ -1,6 +1,6 @@
 import React from "react";
-import { Wrapper, ButtonWrapper } from "./QuestionCard.Styles";
-import { AnswerObject } from "../App";
+import { Wrapper, ButtonWrapper } from "components/QuestionCard.Styles";
+import { AnswerObject } from "App";
 type Props = {
   question: string;
   answers: string[];
