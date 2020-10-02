@@ -8,7 +8,6 @@ const TOTAL_QUESTIONS = 10;
 export type AnswerObject = {
   question: string;
   answer: string;
-  correct: boolean;
   correctAnswer: string;
 };
 const App: React.FC = () => {
@@ -40,7 +39,7 @@ const App: React.FC = () => {
       const answerObject = {
         question: questions[number].question,
         answer,
-        correct,
+
         correctAnswer: questions[number].correct_answer,
       };
       setUserAnswers((prev) => [...prev, answerObject]);
@@ -57,11 +56,11 @@ const App: React.FC = () => {
       <GlobalStyle />
       <Wrapper>
         <h1>REACT QUIZ</h1>
-        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+        {gameOver && (
           <button className="start" onClick={startTrivia}>
             Start
           </button>
-        ) : null}
+        )}
 
         {!gameOver && <p className="score">Score:{score}</p>}
         {loading && <p>Loading Questions ...</p>}
@@ -75,14 +74,11 @@ const App: React.FC = () => {
             callback={checkAnswer}
           />
         )}
-        {!gameOver &&
-          !loading &&
-          userAnswers.length === number + 1 &&
-          number !== TOTAL_QUESTIONS && (
-            <button className="next" onClick={nextQuestion}>
-              Next Question
-            </button>
-          )}
+        {!gameOver && !loading && userAnswers.length === number + 1 && (
+          <button className="next" onClick={nextQuestion}>
+            Next Question
+          </button>
+        )}
       </Wrapper>
     </>
   );
